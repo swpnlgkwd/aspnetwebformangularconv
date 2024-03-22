@@ -1,0 +1,16 @@
+
+I have an Angular application with an Address component. Assist in generating manual test cases for address component present it in a tabular format so that it can be directly exported to Excel.
+
+Guidelines for Test Case Creation:
+- Create one end to end regression test case at the bottom
+- Comprehensive Test Data: Use all possible combinations of test data including positive and negative scenarios.
+- Test Case Structure: Each test case should include a description,test case type that is functional or - regression, test summary, test steps, test case ID, and expected results.
+
+Generate Manual test cases based on below acceptance criteria:
+i. The addresstype dropdown should have only two options "Home" and  "Work".
+ii. The Street field should not be null.
+iii. The Pin Code should start with "421".
+iv. The country dropdown should have only two options "Canada" and  "USA" and it should be appeared in alphabetical order. 
+v. I should see only canadian province when i select Canada  in country dropdown and same is applicable for USA
+vi. Submit button should be enabled only when we have all the mandatory fields
+ 

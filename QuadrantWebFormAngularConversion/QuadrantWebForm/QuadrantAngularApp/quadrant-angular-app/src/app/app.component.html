@@ -1,0 +1,58 @@
+<!-- address.component.html -->
+<div class="container">
+  <form [formGroup]="addressForm" class="mt-5">
+    <h2 class="text-center">New Address</h2>
+    <img src="assets/images/address.png"   alt="Address" class="rounded mx-auto d-block"
+     style="width: 100px;">
+
+    <div class="form-group">
+      <label for="addressType">Address Type:</label>
+      <select formControlName="addressType" id="addressType" class="form-control">
+        <option *ngFor="let addressType of addressTypes" [value]="addressType">{{addressType}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="street">Street:</label>
+      <textarea formControlName="street" id="street" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <select formControlName="country" id="country" class="form-control">
+        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="province">Province:</label>
+      <select formControlName="province" id="province" class="form-control">
+        <option *ngFor="let province of provinces" [value]="province">{{province}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City:</label>
+      <select formControlName="city" id="city" class="form-control">
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="postalCode">Postal Code:</label>
+      <input formControlName="postalCode" id="postalCode" class="form-control">
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" formControlName="isMailingAddress" id="isMailingAddress" class="form-check-input">
+      <label for="isMailingAddress" class="form-check-label">Is Mailing Address:</label>
+    </div>
+
+    <div class="form-group">
+      <button (click)="submit()" class="btn btn-primary">Submit</button>
+      <button (click)="cancel()" class="btn btn-secondary ml-2">Cancel</button>
+    </div>
+  </form>
+
+  <p>{{result | json}}</p>
+</div>

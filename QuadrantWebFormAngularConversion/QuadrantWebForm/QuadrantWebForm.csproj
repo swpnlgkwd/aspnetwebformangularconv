@@ -245,6 +245,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Prompts\" />
+    <Folder Include="QuadrantAngularApp\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

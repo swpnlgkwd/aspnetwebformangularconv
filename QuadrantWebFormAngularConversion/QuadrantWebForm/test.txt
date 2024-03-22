@@ -1,0 +1,180 @@
+<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Address.aspx.cs" Inherits="QuadrantWebForm.Address" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+ <div class="address inline-controls">
+        <asp:Label ID="lblAddress" runat="server" CssClass="fontClass" Text="ADDRESS" Font-Bold="True" ForeColor="#3333CC" />
+        <div class="align-right">
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+
+        </div>
+    </div>
+
+    <div class="address">
+        <div class="newRequestLabelClass">
+            <asp:Label ID="lblNewLeaveRequest" runat="server" Text="NEW ADDRESS" Font-Bold="True" ForeColor="#3333CC" />
+        </div>
+
+        <div class="newaddressinfo">
+            <asp:Table ID="Table1" runat="server" CellPadding="5" CellSpacing="5">
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblAddressType" runat="server" Text="Address Type:" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:DropDownList ID="dropDownAddressType" runat="server"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblStreet" runat="server" Text="Street" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtStreet" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblCountry" runat="server" Text="Country" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:DropDownList ID="drpDownCountry" Width="150px" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownCountry_SelectedIndexChanged"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblProvince" runat="server" Text="Province" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:DropDownList ID="drpDownProvince" Width="150px" AutoPostBack="true" runat="server" OnSelectedIndexChanged="dropDownProvince_SelectedIndexChanged"></asp:DropDownList>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblCity" runat="server" Text="City" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:ListBox ID="lstCity" Width="150px" runat="server"></asp:ListBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblPostalCode" runat="server" Text="Postal Code" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtPostalCode" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell> 
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:CheckBox ID="chkMailingAddress" runat="server" Text="Is Mailing Address" />
+                    </asp:TableCell>
+                </asp:TableRow>
+
+            </asp:Table>
+            <div class="address">
+                <asp:Label ID="lblResult" runat="server" Text="Result"></asp:Label>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace QuadrantWebForm
+{
+    public partial class Address : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                this.dropDownAddressType.Items.Add("Select Address Type");
+                this.dropDownAddressType.Items.Add("Home");
+                this.dropDownAddressType.Items.Add("Work");
+
+
+                this.drpDownCountry.Items.Add("Select Country");
+                this.drpDownCountry.Items.Add("Canada");
+                this.drpDownCountry.Items.Add("USA");
+            }
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            lblResult.Text = "Address Type: " + dropDownAddressType.SelectedItem.ToString() + "<br/>";
+            lblResult.Text += "Street: " + txtStreet.Text + "<br/>";
+            lblResult.Text += "City: " + lstCity.SelectedItem.ToString() + "<br/>";
+            lblResult.Text += "Province: " + drpDownProvince.SelectedItem.ToString() + "<br/>";
+            lblResult.Text += "Country: " + drpDownCountry.SelectedItem.ToString() + "<br/>";
+            lblResult.Text += "Postal Code: " + txtPostalCode.Text + "<br/>";
+            lblResult.Text += "Mailing Address: " + (chkMailingAddress.Checked ? "Yes" : "No") + "<br/>";
+
+
+        }
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Redirect to the next page
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void dropDownCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.drpDownProvince.Items.Clear();
+            if (drpDownCountry.SelectedIndex == 0)
+            {
+                Response.Write("Please select a country");
+            }
+            else if (drpDownCountry.SelectedItem.ToString() == "Canada")
+            {
+                this.drpDownProvince.Items.Add("Select Province");
+                this.drpDownProvince.Items.Add("Ontario");
+                this.drpDownProvince.Items.Add("British Columbia");
+            }
+            else if (drpDownCountry.SelectedItem.ToString() == "USA")
+            {
+                this.drpDownProvince.Items.Add("Select Province");
+                this.drpDownProvince.Items.Add("California");
+                this.drpDownProvince.Items.Add("New York");
+            }
+        }
+
+        protected void dropDownProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstCity.Items.Clear();
+            if (drpDownCountry.SelectedIndex == 0)
+            {
+                Response.Write("Please select a country");
+            }
+            else if (drpDownProvince.SelectedItem.ToString() == "Ontario")
+            {
+                this.lstCity.Items.Add("Toronto");
+                this.lstCity.Items.Add("Otawa");
+            }
+            else if (drpDownProvince.SelectedItem.ToString() == "British Columbia")
+            {
+                this.lstCity.Items.Add("Vancouver");
+                this.lstCity.Items.Add("Victoria");
+            }
+            else if (drpDownProvince.SelectedItem.ToString() == "California")
+            {
+                this.lstCity.Items.Add("Los Angeles");
+                this.lstCity.Items.Add("San Francisco");
+            }
+            else if (drpDownProvince.SelectedItem.ToString() == "New York")
+            {
+                this.lstCity.Items.Add("New York City");
+                this.lstCity.Items.Add("Buffalo");
+            }
+        }
+
+    }
+}

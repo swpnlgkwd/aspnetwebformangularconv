@@ -1,0 +1,22 @@
+
+I have an Angular application with an Address component. I need a complete automation script for this Address component.
+
+Guidelines for feature file:
+i.   Use scenario outline for positive and negative test data combination
+ii.  Capitalize component and page on which component is ON
+iii. Put the input parameters at the end of statement when possible
+iv.  Use "I Confirm"  when checking results
+
+Generate a Feature File based on below acceptance criteria:
+
+i. The addresstype dropdown should have only two options "Home" and  "Work".
+ii. The Street field should not be null.
+iii. The Pin Code should start with "421".
+
+Generate Test Script:
+
+Develop a test script using Selenium with C# and the BDD SpecFlow framework.
+i.   Separate code behind and step definition
+ii.  Separate file for locators in Json format
+iii. Separate file for Web elements 
+iv.  Create common method for finding and interacting with web element in separate file   

@@ -1,0 +1,12 @@
+Purpose 
+-	Use Gen AI on Address.aspx page  so that
+i.	Explain Feature
+ii.	Conversion to Angular
+iii. Front end and Back end Unit Test case Generation
+iv.	Generate Automation Script using LGI Guidelines
+v.	Generate Manual Test cases 
+Steps    
+1.	Quadrant Web Form Project Contains Address.aspx page which is similar to Client Application Page. 
+2.	Pass Angular Conversion Prompt and Add Output into Angular and show the Output
+3.	Execute Automation Prompt
+4.	Run Manual Test Prompt

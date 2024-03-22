@@ -1,0 +1,10 @@
+I have code  in Web Forms application. Could you please assist in generating the complete Angular and TypeScript code . 
+
+Guidelines for Angular Code Generation:
+1. Utilize Angular Lifecycle hooks, services, directives, models , routing, or pipes wherever necessary.
+2. Adhere to Angular and TypeScript naming conventions and best practices.
+3. Use Reactive forms and its event but dont use form builder
+4. Strictly Check  generated HTML code adheres to Web Content Accessibility Guidelines (WCAG) Standard.
+
+Deliverables
+-  Generate complete angular code by strictly adhering to above guidelines
